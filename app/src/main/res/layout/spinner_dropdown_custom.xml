@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<CheckedTextView style="?android:attr/textSelectHandleWindowStyle"
+    android:background="#FFC294"
+    android:ellipsize="marquee"
+    android:id="@android:id/text1"
+    android:layout_height="wrap_content"
+    android:alpha="0.7"
+    android:textSize="@dimen/_14sdp"
+    android:fontFamily="@font/roboto"
+    android:padding="@dimen/_10sdp"
+    android:layout_width="match_parent"
+    android:singleLine="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">UniidSDK</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="error">Error</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="internet_connection_error">Lỗi kết nối mạng. Xin vui lòng kiểm tra và thử lại</string>
+    <string name="error_common">Đã có lỗi xảy ra</string>
+    <string name="otp_exeption">129</string>
+    <string name="text_version">EyesCom V%s</string>
+
+    <string name="login_with_otp"><u>Login with OTP</u></string>
+    <string name="login_with_password"><u>Login with Password</u></string>
+    <string name="forgot_password"><u>Forgot password?</u></string>
+    <string name="send_otp"><u>Send OTP</u></string>
+    <string name="dont_have_account">Don"'"t have an account? <font color='#F47920'><u>Sign up!</u></font></string>
+    <string name="sign_up">Sign up!</string>
+    <string name="sign_in">Sign in</string>
+    <string name="next">Next</string>
+    <string name="phone_email_username">Phone/ Email/ Username</string>
+    <string name="phone_email_username_cannot_be_blank">Phone/ Email/ Username cannot be blank</string>
+    <string name="hint_phone_email_username">Enter phone/ Email/ Username</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="hint_username">Enter Username</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="otp_code">OTP code</string>
+    <string name="username_cannot_be_blank">Username cannot be blank</string>
+    <string name="password_cannot_be_blank">Password cannot be blank</string>
+    <string name="password_weak">Weak password</string>
+    <string name="confirm_password_cannot_be_blank">Confirm password cannot be blank</string>
+    <string name="hint_password">Enter password</string>
+    <string name="hint_confirm_password">Enter confirm password</string>
+    <string name="hint_phone_number">Enter phone number</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="user_your_uniid_account">Use your UniID account</string>
+    <string name="login">Login</string>
+    <string name="first_name">First name</string>
+    <string name="hint_first_name">Enter first name</string>
+    <string name="last_name">Last name</string>
+    <string name="hint_last_name">Enter last name</string>
+    <string name="create_uniid_account">Create\nUniID account</string>
+    <string name="one_account_for_all_your_services">One account for all your services</string>
+    <string name="user_your_phone_account">Use your UniID phone account</string>
+    <string name="verifying_your_phone_number">Verifying your phone number</string>
+    <string name="phone_number">Phone number</string>
+    <string name="hint_otp_code">Enter OTP</string>
+    <string name="privacy_and_terms"><font color='#F47920'><u>Privacy and Terms</u></font></string>
+    <string name="do_you_have_account">Do you have an account? <font color='#F47920'><u>Sign in instead</u></font></string>
+    <string name="message_send_otp">To make sure that this number is yours,\n UniID will send you a text message with\n a 6-digit verification code.\n Standard rates apply %s.</string>
+    <string name="forgot_pass">Forgot password</string>
+    <string name="sign_in_stead"><u>Sign in stead</u></string>
+    <string name="Language">Language</string>
+    <string name="recovery">Recovery</string>
+    <string name="demo_email">demo@gmail.com</string>
+    <string name="recovery_method">Choose a way to recover account</string>
+    <string name="verification_code">Get a verification code at %s</string>
+    <string name="sent_verification_code">A text message with a 6-digit verification code was just sent to %s</string>
+    <string name="try_another_way">Try another way</string>
+    <string name="otp_cannot_be_blank">OTP code cannot be blank</string>
+    <string name="create_account_desc">One account for all your services</string>
+    <string name="phone_cannot_be_blank">Phone cannot be blank</string>
+    <string name="firstname_cannot_be_blank">First name cannot be blank</string>
+    <string name="lastname_cannot_be_blank">Last name cannot be blank</string>
+    <string name="email">Email</string>
+    <string name="birthday">Birthday</string>
+    <string name="hint_email">Enter email (optional)</string>
+    <string name="hint_birthday">Enter birthday (optional)</string>
+    <string name="gender">Gender</string>
+    <string name="hint_gender">Choose gender (optional)</string>
+    <string name="update_your_account">Update your account\ndemo_username</string>
+    <string name="second_step_verify">2-Step Verify</string>
+    <string name="change_pass">Change password</string>
+    <string name="generate_password">Generate a strong new password that you don\'t use for other websites</string>
+    <string name="change_pass_success">Change password successfully</string>
+    <string name="pass_conf_pass_not_same">Confirm Password does not match</string>
+    <string name="minimum_length_phone">Phone number must be at least 8 characters</string>
+    <string name="minimum_length_user_name">Username must be at least 8 characters</string>
+    <string name="length_password">Password must be &gt;= 8 and &lt;= 32 characters</string>
+    <string name="minimum_length_otp">OTP Code must be at least 6 characters</string>
+    <string name="sent_otp_success">Send OTP successfully</string>
+    <string name="unspecific_error">An unspecified error occurred, please try again</string>
+    <string name="birth_day_not">Birthday invalid</string>
+    <string name="verify">Verify</string>
+    <string name="verify_desc">Confirm your phone with UniID demo_username_GG/FB</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_otp_success">Send OTP successfully</string>
+    <string name="lock_title">Your account is locked</string>
+    <string name="close">Close</string>
+    <string name="lock_desc">The maximum number of login attempts has been exceeded. Please try again in 24 hours</string>
+    <string name="login_success">Login successful</string>
+    <string name="mess_confirm_privacy_and_terms">By registering, you agree to all transactions\n according to UniID’s Privacy and Terms</string>
+    <string name="content">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
+    <string name="email_invalid">Email must not exceed 64 characters</string>
+    <string name="emailinvalid">Email invalid</string>
+    <string name="username_8_character">Username must be at least 8 characters</string>
+    <string name="username_32_character">Email maximum length of 32 characters</string>
+    <string name="use_letters_only">You can use letters only</string>
+</resources>
