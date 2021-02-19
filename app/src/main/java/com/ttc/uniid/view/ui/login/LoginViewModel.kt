@@ -51,10 +51,13 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
                 LoginRepository.getInstance().findUsername(LoginRequest(username, null)) { isSuccess, response ->
                     loading.value = false
                     if (isSuccess) {
-                        snackMessage.value = "Thành công"
                         userInfo.value = response
                     } else {
-                        snackMessage.value = context?.getString(R.string.unspecific_error)
+                        if(response?.message != null){
+                            toastMessage.value = response.message
+                        }else{
+                            toastMessage.value = context?.getString(R.string.unspecific_error)
+                        }
                     }
                 }
             }
@@ -63,10 +66,13 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
                 LoginRepository.getInstance().findUsername(LoginRequest(phone, null)) { isSuccess, response ->
                     loading.value = false
                     if (isSuccess) {
-                        snackMessage.value = "Thành công"
                         userInfo.value = response
                     } else {
-                        snackMessage.value = context?.getString(R.string.unspecific_error)
+                        if(response?.message != null){
+                            toastMessage.value = response.message
+                        }else{
+                            toastMessage.value = context?.getString(R.string.unspecific_error)
+                        }
                     }
                 }
             }
@@ -84,11 +90,10 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
                     if(129 == response.code()){
                         lockPassword.call()
                     }else{
-                        snackMessage.value = response.body()?.message
+                        toastMessage.value = response.body()?.message
                     }
-                }
-                else{
-                    snackMessage.value = context?.getString(R.string.unspecific_error)
+                } else{
+                    toastMessage.value = context?.getString(R.string.unspecific_error)
                 }
             }
         }
@@ -98,13 +103,12 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
         LoginRepository.getInstance().requestOTPLogin(checkerCode ?: "", username ?: "") { isSuccess, response ->
             loading.value = false
             if (isSuccess) {
-                loading.value = false
                 responseOTP.value = response
             } else {
                 if(response?.message != null){
-                    snackMessage.value = response.message
+                    toastMessage.value = response.message
                 }else{
-                    snackMessage.value = context?.getString(R.string.unspecific_error)
+                    toastMessage.value = context?.getString(R.string.unspecific_error)
                 }
             }
         }
@@ -129,7 +133,7 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
                     context.getString(R.string.password_cannot_be_blank)
                 valid = false
             } else {
-                (password.value?.length!! in 33..7).let { check ->
+                (password.value?.length!! in 33 downTo 7).let { check ->
                     if (check) {
                         invalidPassword.value =
                             context.getString(R.string.length_password)
@@ -193,7 +197,7 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
         }
         checkerCode?.let { code ->
             loading.value = true
-            LoginRepository.getInstance().loginByOTP(code ?: "", otp.value ?: "") { isSuccess, response ->
+            LoginRepository.getInstance().loginByOTP(code, otp.value ?: "") { isSuccess, response ->
                 loading.value = false
                 if (isSuccess) {
                     loginOTPResponse.value = response?.body()
@@ -203,11 +207,10 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
                         if(129 == response.code()){
                             lockPassword.call()
                         }else{
-                            snackMessage.value = response.body()?.message
+                            toastMessage.value = response.body()?.message
                         }
-                    }
-                    else{
-                        snackMessage.value = context?.getString(R.string.unspecific_error)
+                    } else{
+                        toastMessage.value = context?.getString(R.string.unspecific_error)
                     }
                 }
             }
