@@ -29,11 +29,6 @@ class CreateUniIdAccountViewModel(app: Application) : BaseViewModel(app) {
     val registerPhonesRespond = MutableLiveData<RegisterPhonesRespond>()
     var registerPhonesRequest: RegisterPhonesRequest? = null
 
-    fun clickBtn() {
-        registerPhones()
-    }
-
-
     fun registerPhones() {
         if (!isValidPhone()){
             return
@@ -174,7 +169,7 @@ class CreateUniIdAccountViewModel(app: Application) : BaseViewModel(app) {
         var valid = true
         confirmPassword.value.isNullOrEmpty().let {
             if (it) {
-                invalidPassWord.value =
+                invalidConfirmPassword.value =
                     context.getString(R.string.confirm_password_cannot_be_blank)
                 valid = false
             } else {

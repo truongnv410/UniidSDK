@@ -144,7 +144,7 @@ class CreateUniIdAccountFragment : Fragment(){
         resetUIErrorPassword(layoutPassword)
         resetUIErrorPassword(layoutConfirmPassword)
         btnNext.setOnClickListener {
-            viewModel?.clickBtn()
+            viewModel?.registerPhones()
         }
         tvPrivacy.setOnClickListener {
             val bundle = bundleOf("CONTENT" to getString(R.string.content))
