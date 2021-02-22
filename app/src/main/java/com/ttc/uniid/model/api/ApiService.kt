@@ -70,13 +70,13 @@ interface ApiService {
     ): Call<BaseResponse>
 
     @POST("users/register-phones")
-    fun registerPhonesRequest(@Body bodyRequest: RegisterPhonesRequest): Single<RegisterPhonesRespond>
+    fun registerPhonesRequest(@Body bodyRequest: RegisterPhonesRequest): Call<RegisterPhonesRespond>
 
     @POST("users/verifier-phones")
-    fun verifyPhoneRegister(@Body bodyRequest: VerifyPhoneRegisterRequest): Single<VerifierPhoneRespond>
+    fun verifyPhoneRegister(@Body bodyRequest: VerifyPhoneRegisterRequest): Call<VerifierPhoneRespond>
 
     @POST("users/filler")
-    fun filler(@Body bodyRequest: FillerRequest): Single<BaseResponse>
+    fun filler(@Body bodyRequest: FillerRequest): Call<BaseResponse>
 
     @POST("users/social/request-accuracy")
     fun requestAccuracySocial(@Body request: GetOTPSocialRequest): Call<BaseResponse>

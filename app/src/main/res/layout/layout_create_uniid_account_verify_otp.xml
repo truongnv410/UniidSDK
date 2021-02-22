@@ -1,0 +1,154 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ttc.uniid.view.ui.sendOtp.SendOtpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_image">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/bg_border_view_login"
+            android:orientation="vertical"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/layout_header_logo_uniid"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="@string/create_uniid_account"
+                    android:textColor="@color/orangeApp"
+                    android:textSize="@dimen/_40sdp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv2ndTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/verifying_your_phone_number"
+                    android:textColor="@color/textColorUnitel"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="@string/message_send_otp"
+                    android:textSize="@dimen/_14sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/otp_code"
+                        android:textColor="@color/black" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutOTP"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_border_edittext_10dp"
+                        android:gravity="center"
+                        app:hintEnabled="false"
+                        app:suffixTextColor="@color/colorButton">
+
+                        <com.google.android.material.textfield.TextInputEditText
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:fontFamily="@font/roboto"
+                            android:hint="@string/hint_otp_code"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:text="@={viewModel.otpCode}"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtNameError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="@{viewModel.invalidOTPCode}"
+                        android:textColor="@color/colorButton"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="@{viewModel.invalidOTPCode.empty ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvResendOTP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:layout_gravity="end"
+                    android:padding="10dp"
+                    android:text="@string/send_otp"
+                    android:textColor="@color/orangeApp" />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textAllCaps="false"
+                    android:layout_marginLeft="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_60sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/button_orange_5dp_corner_light_theme"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/next"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </ScrollView>
+        <RelativeLayout
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewModel.loading? View.VISIBLE: View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

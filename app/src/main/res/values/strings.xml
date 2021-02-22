@@ -24,6 +24,7 @@
     <string name="sign_up">Sign up!</string>
     <string name="sign_in">Sign in</string>
     <string name="next">Next</string>
+    <string name="accept">Accept</string>
     <string name="phone_email_username">Phone/ Email/ Username</string>
     <string name="phone_email_username_cannot_be_blank">Phone/ Email/ Username cannot be blank</string>
     <string name="hint_phone_email_username">Enter phone/ Email/ Username</string>
@@ -103,4 +104,5 @@
     <string name="username_8_character">Username must be at least 8 characters</string>
     <string name="username_32_character">Email maximum length of 32 characters</string>
     <string name="use_letters_only">You can use letters only</string>
+    <string name="use_letters_periods_number_only">You can use letters, numbers &amp; periods</string>
 </resources>

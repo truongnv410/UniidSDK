@@ -1,0 +1,271 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.ttc.uniid.view.ui.updateAccountInfo.UpdateAccountInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_image">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/bg_border_view_login"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_20sdp">
+
+                <include layout="@layout/layout_header_logo_uniid"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="@string/create_uniid_account"
+                    android:textColor="@color/orangeApp"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/update_your_account"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ln_user_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lnEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/roboto"
+                            android:text="@string/email"
+                            android:textColor="@color/black" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_border_edittext_10dp"
+                            android:gravity="center"
+                            app:hintEnabled="false"
+                            app:suffixTextColor="@color/colorButton">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center_vertical"
+                                android:text="@={viewModel.email}"
+                                android:hint="@string/hint_email"
+                                android:inputType="textPersonName"
+                                android:maxLength="64"
+                                android:textSize="@dimen/_14sdp"
+                                app:hintEnabled="false" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/txtNameError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="@={viewModel.invalidEmail}"
+                            android:textColor="@color/colorButton"
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="@{viewModel.invalidEmail.empty ? View.GONE: View.VISIBLE}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lnBirthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="vertical">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/roboto"
+                            android:text="@string/birthday"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:id="@+id/edtBirthday"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:background="@drawable/bg_spn_border_custom"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="center_vertical"
+                            android:hint="@string/hint_birthday"
+                            android:inputType="textPersonName"
+                            android:maxLength="50"
+                            android:text="@={viewModel.birthday}"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <LinearLayout
+                            android:id="@+id/lnCalenderPicker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_border_edittext_10dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:gravity="right">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:paddingTop="@dimen/_5sdp"
+                                    android:paddingRight="@dimen/_5sdp"
+                                    android:src="@drawable/arrow_down_sign_to_navigate_grey" />
+                            </LinearLayout>
+
+                            <CalendarView
+                                android:id="@+id/simpleCalendarView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="visible"/>
+
+                            <Button
+                                android:id="@+id/btnAcceptDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/_15sdp"
+                                android:background="@drawable/button_orange_5dp_corner_light_theme"
+                                android:fontFamily="@font/montserrat"
+                                android:gravity="center"
+                                android:padding="@dimen/_10sdp"
+                                android:text="@string/accept"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lnGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:visibility="visible"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/roboto"
+                            android:text="@string/gender"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:id="@+id/spnGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:background="@drawable/bg_spn_border_custom"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="center_vertical"
+                            android:hint="@string/hint_gender"
+                            android:inputType="textPersonName"
+                            android:textSize="@dimen/_14sdp" />
+                        <LinearLayout
+                            android:id="@+id/lnSpnGender"
+                            android:layout_width="match_parent"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_border_edittext_10dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:gravity="right">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:paddingTop="@dimen/_5sdp"
+                                    android:paddingRight="@dimen/_5sdp"
+                                    android:src="@drawable/arrow_down_sign_to_navigate_grey" />
+                            </LinearLayout>
+                            <ListView
+                                android:id="@+id/lstGender"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_100sdp"
+                                android:alpha="0.5"
+                                tools:listitem="@layout/spinner_item_system"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_60sdp"
+                    android:background="@drawable/button_orange_5dp_corner_light_theme"
+                    android:fontFamily="@font/montserrat"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/next"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+        </ScrollView>
+        <RelativeLayout
+            android:visibility="@{viewModel.loading? View.VISIBLE: View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

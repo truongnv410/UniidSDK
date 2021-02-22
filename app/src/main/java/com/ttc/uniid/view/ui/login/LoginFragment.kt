@@ -18,6 +18,7 @@ import com.ttc.uniid.databinding.LayoutLoginUserUniidBinding
 import com.ttc.uniid.extension.addFragment
 import com.ttc.uniid.extension.replaceFragment
 import com.ttc.uniid.extension.showDialogResult
+import com.ttc.uniid.view.ui.createUniIdAccount.CreateUniIdAccountFragment
 import com.ttc.uniid.view.ui.forgotpassword.ForgotPasswordFragment
 import com.ttc.uniid.view.ui.social.SocialWebFragment
 import kotlinx.android.synthetic.main.layout_login_user_uniid.*
@@ -211,26 +212,6 @@ class LoginFragment : Fragment() {
                 activity?.addFragment(SocialWebFragment(), bundle)
             }
         })
-        txtLoginWithOtp.setOnClickListener {
-            resetError(viewDataBinding.viewModel)
-            isLoginByPass = false
-            layoutPhone.visibility = View.VISIBLE
-            layoutAccount.visibility = View.GONE
-            layoutOTP.visibility = View.VISIBLE
-            layoutLoginWithPassword.visibility = View.GONE
-            lnLayoutPassword.visibility = View.GONE
-            layoutLoginWithOTP.visibility = View.VISIBLE
-        }
-        txtLoginWithPassword.setOnClickListener {
-            resetError(viewDataBinding.viewModel)
-            layoutPhone.visibility = View.GONE
-            layoutAccount.visibility = View.VISIBLE
-            isLoginByPass = true
-            layoutOTP.visibility = View.GONE
-            layoutLoginWithPassword.visibility = View.VISIBLE
-            lnLayoutPassword.visibility = View.VISIBLE
-            layoutLoginWithOTP.visibility = View.GONE
-        }
         viewDataBinding.viewModel?.responsePassword?.observe(viewLifecycleOwner, Observer {
             if (it.errorCode == 100) {
                 it.userInfoDTO?.checkerCode = checkerCode
@@ -248,12 +229,6 @@ class LoginFragment : Fragment() {
                 }
             }
         })
-        imgFacebook.setOnClickListener {
-            viewDataBinding.viewModel?.loginFacebook()
-        }
-        imgGoogle.setOnClickListener {
-            viewDataBinding.viewModel?.loginGG()
-        }
     }
 
     private fun resetError(viewModel: LoginViewModel?) {
@@ -328,6 +303,36 @@ class LoginFragment : Fragment() {
         }
         txtSendOTP.setOnClickListener {
             viewDataBinding.viewModel?.findUsername(isLoginByPass)
+        }
+        txtDontHaveAccountSingUp.setOnClickListener {
+            requireActivity().replaceFragment(CreateUniIdAccountFragment(), Bundle())
+
+        }
+        txtLoginWithOtp.setOnClickListener {
+            resetError(viewDataBinding.viewModel)
+            isLoginByPass = false
+            layoutPhone.visibility = View.VISIBLE
+            layoutAccount.visibility = View.GONE
+            layoutOTP.visibility = View.VISIBLE
+            layoutLoginWithPassword.visibility = View.GONE
+            lnLayoutPassword.visibility = View.GONE
+            layoutLoginWithOTP.visibility = View.VISIBLE
+        }
+        txtLoginWithPassword.setOnClickListener {
+            resetError(viewDataBinding.viewModel)
+            layoutPhone.visibility = View.GONE
+            layoutAccount.visibility = View.VISIBLE
+            isLoginByPass = true
+            layoutOTP.visibility = View.GONE
+            layoutLoginWithPassword.visibility = View.VISIBLE
+            lnLayoutPassword.visibility = View.VISIBLE
+            layoutLoginWithOTP.visibility = View.GONE
+        }
+        imgFacebook.setOnClickListener {
+            viewDataBinding.viewModel?.loginFacebook()
+        }
+        imgGoogle.setOnClickListener {
+            viewDataBinding.viewModel?.loginGG()
         }
     }
 }
