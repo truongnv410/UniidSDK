@@ -80,7 +80,6 @@ class SendOtpViewModel(app: Application) : BaseViewModel(app) {
                     if (isSuccess) {
                         registerPhonesRespond.value = response
                         loading.value = false
-
                         Toast.makeText(
                             context,
                             registerPhonesRespond.value?.message,

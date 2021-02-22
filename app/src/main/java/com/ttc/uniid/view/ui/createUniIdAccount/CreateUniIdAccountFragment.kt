@@ -137,6 +137,11 @@ class CreateUniIdAccountFragment : Fragment(){
                 setErrorUI(it,layout_last_name,invalidLastName)
             }
         })
+        toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let {
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 

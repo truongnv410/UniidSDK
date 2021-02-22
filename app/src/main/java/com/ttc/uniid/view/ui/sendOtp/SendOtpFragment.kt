@@ -40,7 +40,7 @@ class SendOtpFragment :Fragment(){
     private fun subscribeUI() = with(viewDataBinding?.viewModel!!) {
         verifierPhoneSuccess?.observe(viewLifecycleOwner, Observer {
             verifierPhoneRespond?.let {
-                if ("100".equals(it.value?.errorCode)) {
+                if (it.value?.errorCode==100) {
                     var bundle = Bundle()
                     bundle.putParcelable("VerifierPhoneRespond", verifierPhoneRespond?.value)
                     val updateAccountInfoFragment = UpdateAccountInfoFragment()
@@ -79,6 +79,11 @@ class SendOtpFragment :Fragment(){
                     layoutOTP.background =
                         resources.getDrawable(R.drawable.bg_border_edittext_10dp)
                 }
+            }
+        })
+        toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let {
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
             }
         })
     }

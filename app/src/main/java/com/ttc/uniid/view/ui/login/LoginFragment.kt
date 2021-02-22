@@ -20,6 +20,7 @@ import com.ttc.uniid.extension.replaceFragment
 import com.ttc.uniid.extension.showDialogResult
 import com.ttc.uniid.view.ui.createUniIdAccount.CreateUniIdAccountFragment
 import com.ttc.uniid.view.ui.forgotpassword.ForgotPasswordFragment
+import com.ttc.uniid.view.ui.recovery.RecoveryFragment
 import com.ttc.uniid.view.ui.social.SocialWebFragment
 import kotlinx.android.synthetic.main.layout_login_user_uniid.*
 
@@ -221,9 +222,9 @@ class LoginFragment : Fragment() {
                 it.userInfoDTO?.checkerCode = checkerCode
                 if (it?.userInfoDTO?.useAuthenticator != null) {
                     var bundle = bundleOf("user_info" to it, "isLogin" to true)
-//                    val fragmentRecovery = RecoveryFragment()
-//                    fragmentRecovery.arguments = bundle
-//                    requireActivity().replaceFragment(fragmentRecovery, fragmentRecovery.arguments)
+                    val fragmentRecovery = RecoveryFragment()
+                    fragmentRecovery.arguments = bundle
+                    requireActivity().replaceFragment(fragmentRecovery, fragmentRecovery.arguments)
                 } else {
                     Toast.makeText(
                         requireActivity(),
