@@ -44,7 +44,7 @@ class EnterOTPViewModel(app: Application) : BaseViewModel(app) {
         }
     }
 
-    fun accuracy(accuracyType: String, userInfo: UserInfoResponse, isTryAnotherWay: Boolean) {
+    fun accuracy(accuracyType: String, userInfo: UserInfoResponse) {
         userInfo.userInfoDTO?.endUserDTO?.username?.let { username ->
             EnterOTPRepository.getInstance()
                 .accuracy(
@@ -55,11 +55,7 @@ class EnterOTPViewModel(app: Application) : BaseViewModel(app) {
                 ) { isSuccess, response ->
                     loading.value = false
                     if (isSuccess) {
-                        Toast.makeText(
-                            context,
-                            context?.getString(R.string.sent_otp_success),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        toastMessage.value = context?.getString(R.string.sent_otp_success)
                     } else {
                         if(response?.message !=null){
                             toastMessage.value = response.message

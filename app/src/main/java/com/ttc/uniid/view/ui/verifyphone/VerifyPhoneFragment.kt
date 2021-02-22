@@ -27,7 +27,7 @@ class VerifyPhoneFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = VerifyPhoneLayoutBinding.inflate(inflater, container, false).apply {
             viewModel = ViewModelProviders.of(this@VerifyPhoneFragment)
                 .get(VerifyPhoneViewModel::class.java)
@@ -49,7 +49,7 @@ class VerifyPhoneFragment : Fragment() {
         dataUrlSocial?.let {
             val mapData = convertStringToMap(it)
             val username = mapData?.get("username")
-            val socialType = mapData?.get("socialType")
+          //  val socialType = mapData?.get("socialType")
             btnNext.setOnClickListener {
                 username?.let { username ->
                     viewDataBinding.viewModel?.getOTPSocialFacebook(username)
@@ -71,6 +71,11 @@ class VerifyPhoneFragment : Fragment() {
                         "phone" to viewDataBinding.viewModel?.phone?.value
                     )
                 )
+            }
+        })
+        viewDataBinding.viewModel?.toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let{
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
             }
         })
     }

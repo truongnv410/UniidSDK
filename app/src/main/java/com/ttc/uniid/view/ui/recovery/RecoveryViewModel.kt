@@ -3,12 +3,9 @@ package com.ttc.uniid.view.ui.recovery
 import android.app.Application
 import android.content.Context
 import com.ttc.uniid.R
-import com.ttc.uniid.data.remote.request.AccuracyRequest
-import com.ttc.uniid.data.remote.request.LoginRequest
 import com.ttc.uniid.data.remote.response.UserInfoResponse
 import com.ttc.uniid.util.SingleLiveData
 import com.ttc.uniid.view.base.BaseViewModel
-import com.ttc.uniid.view.ui.login.LoginRepository
 
 class RecoveryViewModel(app: Application) : BaseViewModel(app) {
     val context: Context = app.applicationContext
@@ -17,14 +14,15 @@ class RecoveryViewModel(app: Application) : BaseViewModel(app) {
     fun accuracy(accuracyType: String, userInfo: UserInfoResponse) {
         userInfo.userInfoDTO?.endUserDTO?.username?.let { username ->
             loading.value = true
-            RecoveryRepository.getInstance().accuracy(accuracyType, username) { isSuccess, response ->
-                loading.value = false
-                if (isSuccess) {
-                    accuracySuccess.call()
-                } else {
-                    snackMessage.value = context.getString(R.string.unspecific_error)
+            RecoveryRepository.getInstance()
+                .accuracy(accuracyType, username) { isSuccess, response ->
+                    loading.value = false
+                    if (isSuccess) {
+                        accuracySuccess.call()
+                    } else {
+                        toastMessage.value = context.getString(R.string.unspecific_error)
+                    }
                 }
-            }
         }
     }
 
@@ -37,7 +35,11 @@ class RecoveryViewModel(app: Application) : BaseViewModel(app) {
                     if (isSuccess) {
                         sendOTPSuccess.call()
                     } else {
-                        snackMessage.value = context.getString(R.string.unspecific_error)
+                        if (response?.message != null) {
+                            toastMessage.value = response.message
+                        } else {
+                            toastMessage.value = context.getString(R.string.unspecific_error)
+                        }
                     }
                 }
         }

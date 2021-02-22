@@ -30,10 +30,13 @@ class ForgotPasswordViewModel(app: Application) : BaseViewModel(app) {
             .findUsername(LoginRequest(userName.value ?: "", null)) { isSuccess, response ->
                 loading.value = false
                 if (isSuccess) {
-                    snackMessage.value = "Thành công"
                     userInfo.value = response
                 } else {
-                    snackMessage.value = context?.getString(R.string.unspecific_error)
+                    if(response?.message !=null){
+                        toastMessage.value = response.message
+                    }else{
+                        toastMessage.value = context?.getString(R.string.unspecific_error)
+                    }
                 }
             }
     }

@@ -70,13 +70,13 @@ class EnterOTPFragment : Fragment() {
             userInfo?.let { userData ->
                 if (isSendOTPEmail) {
                     if (isLogin) {
-                        viewDataBinding.viewModel?.accuracy("EMAIL", userData, false)
+                        viewDataBinding.viewModel?.accuracy("EMAIL", userData)
                     } else {
                         viewDataBinding.viewModel?.resendOTP("EMAIL", userData, false)
                     }
                 } else {
                     if (isLogin) {
-                        viewDataBinding.viewModel?.accuracy("PHONE", userData, false)
+                        viewDataBinding.viewModel?.accuracy("PHONE", userData)
                     } else {
                         viewDataBinding.viewModel?.resendOTP("PHONE", userData, false)
                     }
@@ -141,7 +141,7 @@ class EnterOTPFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun subscribeUI() {
         viewDataBinding.viewModel?.sendOTPSuccess?.observe(viewLifecycleOwner, Observer {
-            if (it.errorCode == 600) {
+            if (it.errorCode == 100) {
                 Toast.makeText(
                     activity,
                     context?.getString(R.string.send_otp_success),
@@ -155,7 +155,7 @@ class EnterOTPFragment : Fragment() {
             Toast.makeText(
                 activity,
                 getString(R.string.sent_otp_success),
-                android.widget.Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT
             )
                 .show()
             updateUI()
@@ -181,9 +181,9 @@ class EnterOTPFragment : Fragment() {
         viewDataBinding.viewModel?.invalidOTPCode?.observe(viewLifecycleOwner, Observer { error ->
             error.isNotEmpty().let {
                 if (it) {
-                    layoutOTP.suffixTextView.visibility = android.view.View.VISIBLE
+                    layoutOTP.suffixTextView.visibility = View.VISIBLE
                     layoutOTP.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-                        layoutOTP.suffixTextView.visibility = android.view.View.VISIBLE
+                        layoutOTP.suffixTextView.visibility = View.VISIBLE
                     }
                     layoutOTP.suffixText = getString(R.string.error)
                     layoutOTP.background =
@@ -195,7 +195,7 @@ class EnterOTPFragment : Fragment() {
             }
         })
         viewDataBinding.viewModel?.accuracySocialSuccess?.observe(viewLifecycleOwner, Observer {
-            if (it.errorCode == 600) {
+            if (it.errorCode == 100) {
                 Toast.makeText(
                     activity,
                     context?.getString(R.string.login_success),
@@ -217,6 +217,11 @@ class EnterOTPFragment : Fragment() {
                         layoutOTP.suffixTextView.visibility = View.GONE
                     }
                 }
+            }
+        })
+        viewDataBinding.viewModel?.toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let {
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
             }
         })
     }

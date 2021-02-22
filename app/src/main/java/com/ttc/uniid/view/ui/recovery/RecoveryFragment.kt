@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,7 +27,7 @@ class RecoveryFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = LayoutRecoveryBinding.inflate(inflater, container, false).apply {
             viewModel = ViewModelProviders.of(this@RecoveryFragment)
                 .get(RecoveryViewModel::class.java)
@@ -66,7 +67,7 @@ class RecoveryFragment : Fragment() {
                 } else {
                     viewDataBinding.viewModel?.sendOTP("PHONE", uInfo)
                 }
-                isSendOTPEmail = false;
+                isSendOTPEmail = false
             }
         }
         btnOTPEmail.setOnClickListener {
@@ -104,6 +105,11 @@ class RecoveryFragment : Fragment() {
             enterOTPFragment.arguments = bundle
             fragmentTransaction?.add(android.R.id.content, enterOTPFragment)
                 ?.addToBackStack("EnterOTPFragment")?.commit()
+        })
+        viewDataBinding.viewModel?.toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let{
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

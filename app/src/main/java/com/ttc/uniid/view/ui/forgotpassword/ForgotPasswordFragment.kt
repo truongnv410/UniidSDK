@@ -25,7 +25,7 @@ class ForgotPasswordFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = ForgotPasswordFragmentBinding.inflate(inflater, container, false).apply {
             viewModel = ViewModelProviders.of(this@ForgotPasswordFragment)
                 .get(ForgotPasswordViewModel::class.java)
@@ -93,6 +93,11 @@ class ForgotPasswordFragment : Fragment() {
                         layoutName.suffixTextView.visibility = View.GONE
                     }
                 }
+            }
+        })
+        viewDataBinding.viewModel?.toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let{
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
             }
         })
     }

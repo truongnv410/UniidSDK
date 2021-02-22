@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewDataBinding = LayoutLoginUserUniidBinding.inflate(inflater, container, false).apply {
             viewModel = ViewModelProviders.of(this@LoginFragment).get(LoginViewModel::class.java)
             setLifecycleOwner(viewLifecycleOwner)
@@ -207,9 +207,13 @@ class LoginFragment : Fragment() {
         })
         viewDataBinding.viewModel?.ggLink?.observe(viewLifecycleOwner, Observer { httpUrl ->
             httpUrl?.let {
-                val url = it.toString()
-                val bundle = bundleOf("httpUrl" to url)
+                val bundle = bundleOf("httpUrl" to it)
                 activity?.addFragment(SocialWebFragment(), bundle)
+            }
+        })
+        viewDataBinding.viewModel?.toastMessage?.observe(viewLifecycleOwner, Observer { msg ->
+            activity?.let{
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
             }
         })
         viewDataBinding.viewModel?.responsePassword?.observe(viewLifecycleOwner, Observer {
